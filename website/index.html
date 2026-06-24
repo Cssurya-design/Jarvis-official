@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J.A.R.V.I.S. - AI Assistant</title>
+    <link rel="icon" type="image/x-icon" href="assets/jarvis_icon.png">
+    <meta name="description" content="Experience the future with Jarvis, the most advanced AI assistant for Android. Download the APK now.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Three.js for Advanced WebGL Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="page-transition">
+    <div class="bg-grid"></div>
+    <div class="scan-line"></div>
+    
+    <!-- Three.js WebGL Container -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="cursor-glow"></div>
+
+    <nav class="navbar hidden-onload">
+        <a href="index.html" class="logo" style="text-decoration: none;">
+            <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon">
+            <span class="logo-text">J.A.R.V.I.S.</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active-link">Home</a></li>
+            <li><a href="features.html">Capabilities</a></li>
+            <li><a href="commands.html">Command Library</a></li>
+        </ul>
+        <div class="auth-section">
+            <!-- Google Auth UI elements -->
+            <div id="g_id_onload"
+                 data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                 data-context="signin"
+                 data-ux_mode="popup"
+                 data-callback="handleCredentialResponse"
+                 data-auto_prompt="false">
+            </div>
+            <div id="google-btn-wrapper" class="btn-nav-wrapper">
+                <div class="g_id_signin"
+                     data-type="standard"
+                     data-shape="pill"
+                     data-theme="filled_black"
+                     data-text="signin_with"
+                     data-size="large"
+                     data-logo_alignment="left">
+                </div>
+            </div>
+            
+            <!-- Hidden User Profile (Shown after login) -->
+            <div id="user-profile" class="user-profile hidden">
+                <img id="user-avatar" src="" alt="Avatar" class="user-avatar">
+                <a href="portal.html" class="btn-secondary" style="padding: 5px 15px; border-radius: 15px; font-size: 0.9rem;">Pro Portal</a>
+                <button id="logout-btn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="hidden-onload">
+            <div class="hero-content">
+                <h1 class="hero-title">Meet <span class="text-gradient">Jarvis</span>.</h1>
+                <h2 class="hero-subtitle">The Future is in Your Hands.</h2>
+                <p class="hero-desc">Experience an advanced artificial intelligence assistant designed to learn, adapt, and elevate your everyday life. Built exclusively for Android using native Capacitor architecture.</p>
+                <div class="hero-actions">
+                    <a href="features.html" class="btn-primary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Discover Capabilities
+                    </a>
+                    <a href="#download" class="btn-secondary">Get the App</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="jarvis-core armor-float">
+                    <div class="core-ring core-ring-1"></div>
+                    <div class="core-ring core-ring-2"></div>
+                    <div class="core-ring core-ring-3"></div>
+                    <div class="core-ring core-ring-4"></div>
+                    <div class="core-ring core-ring-5"></div>
+                    <div class="core-center"></div>
+                    <div class="energy-pulse"></div>
+                    <div class="energy-pulse"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HIGH LEVEL OVERVIEW -->
+        <section id="overview" class="scroll-reveal">
+            <div class="section-header">
+                <h2 class="section-title">Beyond Human <span class="text-gradient">Capabilities</span></h2>
+                <p class="section-subtitle">Jarvis integrates directly with your device's core systems.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card tilt-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Hardware Mastery</h3>
+                    <p>Voice control for your flashlight, screen brightness, volume, and haptic feedback.</p>
+                    <a href="features.html" class="card-link">Learn More &rarr;</a>
+                </div>
+                <div class="feature-card tilt-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Deep App Integration</h3>
+                    <p>Directly command native apps like WhatsApp, Instagram, Spotify, and Netflix.</p>
+                    <a href="features.html" class="card-link">Learn More &rarr;</a>
+                </div>
+                <div class="feature-card tilt-card">
+                    <div class="feature-icon">🎤</div>
+                    <h3>Command Library</h3>
+                    <p>Explore the vast library of natural voice commands recognized by the Jarvis engine.</p>
+                    <a href="commands.html" class="card-link">View Commands &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section id="gallery" class="scroll-reveal">
+            <div class="section-header">
+                <h2 class="section-title">Sleek <span class="text-gradient">Interface</span></h2>
+                <p class="section-subtitle">Designed for elegance and efficiency.</p>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-track">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.01 PM (1).jpeg" alt="Jarvis UI 1" class="gallery-img">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.01 PM.jpeg" alt="Jarvis UI 2" class="gallery-img">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.02 PM (1).jpeg" alt="Jarvis UI 3" class="gallery-img">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.02 PM (2).jpeg" alt="Jarvis UI 4" class="gallery-img">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.02 PM.jpeg" alt="Jarvis UI 5" class="gallery-img">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.03 PM (1).jpeg" alt="Jarvis UI 6" class="gallery-img">
+                    <img src="assets/WhatsApp Image 2026-06-24 at 8.42.03 PM.jpeg" alt="Jarvis UI 7" class="gallery-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- PRE-DOWNLOAD CTA -->
+        <section id="download" class="scroll-reveal">
+            <div class="download-box">
+                <div class="download-content">
+                    <h2>Ready to Upgrade Your Reality?</h2>
+                    <p id="download-prompt">Sign in above to access the Pro Portal and download the Jarvis APK.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon" style="width: 30px; height: 30px;">
+                    <span class="logo-text" style="font-size: 1.2rem;">J.A.R.V.I.S.</span>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem;">The ultimate AI companion exclusively for Android. Designed to elevate your daily digital workflow.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="features.html">Capabilities</a></li>
+                    <li><a href="commands.html">Command Library</a></li>
+                    <li><a href="portal.html">Pro Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">API Documentation</a></li>
+                    <li><a href="#">System Architecture</a></li>
+                    <li><a href="#">FAQ & Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Jarvis Systems. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
