@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-color: #000000;
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+  --color-accent: #6366F1;
+  --color-accent-secondary: #8B5CF6;
+  --color-accent-glow: rgba(99, 102, 241, 0.4);
+  --color-card-bg: rgba(9, 9, 11, 0.7);
+  --color-card-border: rgba(39, 39, 42, 0.5);
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-color);
+    color: var(--color-text-primary);
+    overflow-x: hidden;
+    @apply font-body;
+  }
+  
+  h1, h2, h3, h4, .font-heading {
+    @apply font-heading tracking-[1.5px] text-white;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-gradient-to-r from-white to-accent text-transparent bg-clip-text inline-block;
+    text-shadow: 0 0 15px var(--color-accent-glow);
+  }
+  
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 bg-accent text-[#0a0e17] no-underline px-[30px] py-[15px] rounded-[30px] font-bold text-[1.2rem] relative overflow-hidden transition-transform duration-300 font-heading tracking-[1px] border-none cursor-pointer;
+  }
+  .btn-primary:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 10px 30px var(--color-accent-glow);
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center text-accent no-underline px-[30px] py-[15px] rounded-[30px] font-semibold text-[1.1rem] border border-accent transition-all duration-300;
+  }
+  .btn-secondary:hover {
+    @apply bg-[rgba(0,212,255,0.1)];
+    box-shadow: 0 0 15px var(--color-accent-glow);
+  }
+}
+
+/* Background grid animation */
+.bg-grid {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px; z-index: -3;
+  animation: gridMove 20s linear infinite;
+  pointer-events: none;
+}
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+.scan-line {
+  position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  z-index: -2; opacity: 0.4; pointer-events: none;
+  animation: scanLine 4s ease-in-out infinite;
+}
+@keyframes scanLine {
+  0% { top: 0; opacity: 0; }
+  50% { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+}
+
+@keyframes scrollX {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
