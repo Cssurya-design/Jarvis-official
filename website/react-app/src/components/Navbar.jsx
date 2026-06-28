@@ -13,6 +13,9 @@ const Navbar = () => {
   const { scrollY } = useScroll();
   const { user, logout } = useAuth();
 
+  const displayAvatar = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.email || 'User')}&background=0D8ABC&color=fff`;
+  const displayName = user?.user_metadata?.name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'User';
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
     setIsScrolled(latest > 50);
@@ -82,8 +85,8 @@ const Navbar = () => {
                 className="hidden md:flex items-center gap-3 bg-white/5 p-1 pr-4 rounded-full border border-[#00d4ff]/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all cursor-pointer"
                 onClick={() => setShowDropdown(!showDropdown)}
               >
-                <img src={user.picture} alt="Profile" className="w-8 h-8 rounded-full border-2 border-accent object-cover" />
-                <span className="text-sm font-semibold text-text-primary">{user.given_name || user.name}</span>
+                <img src={displayAvatar} alt="Profile" className="w-8 h-8 rounded-full border-2 border-accent object-cover bg-bg-color" />
+                <span className="text-sm font-semibold text-text-primary">{displayName}</span>
               </div>
               
               {showDropdown && (
@@ -186,9 +189,9 @@ const Navbar = () => {
                   {user ? (
                     <div className="flex flex-col gap-4">
                       <div className="flex items-center gap-3 px-2">
-                        <img src={user.picture} alt="Profile" className="w-10 h-10 rounded-full border-2 border-accent object-cover" />
+                        <img src={displayAvatar} alt="Profile" className="w-10 h-10 rounded-full border-2 border-accent object-cover bg-bg-color" />
                         <div>
-                          <p className="text-white font-semibold">{user.name}</p>
+                          <p className="text-white font-semibold">{displayName}</p>
                           <p className="text-text-secondary text-sm">{user.email}</p>
                         </div>
                       </div>
