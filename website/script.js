@@ -193,6 +193,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 7. Three.js Background ---
     initThreeJSBackground();
+
+    // --- 9. Email Link Handler (Desktop vs Mobile) ---
+    const emailLinks = document.querySelectorAll('a[href^="https://mail.google.com/"]');
+    emailLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (isMobile) {
+                e.preventDefault();
+                const url = new URL(link.href);
+                const toEmail = url.searchParams.get('to') || 'cssurya2006@gmail.com';
+                window.location.href = `mailto:${toEmail}`;
+            }
+        });
+    });
 });
 
 function initThreeJSBackground() {
