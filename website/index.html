@@ -63,7 +63,7 @@
             <!-- Hidden User Profile (Shown after login) -->
             <div id="user-profile" class="user-profile hidden">
                 <img id="user-avatar" src="" alt="Avatar" class="user-avatar">
-                <a href="portal.html" class="btn-secondary" style="padding: 5px 15px; border-radius: 15px; font-size: 0.9rem;">Pro Portal</a>
+                <a href="portal.html" class="btn-secondary" style="padding: 5px 15px; border-radius: 15px; font-size: 0.9rem;">Portal</a>
                 <button id="logout-btn" class="btn-logout">Logout</button>
             </div>
         </div>
@@ -101,26 +101,44 @@
         <section id="overview" class="scroll-reveal">
             <div class="section-header">
                 <h2 class="section-title">Beyond Human <span class="text-gradient">Capabilities</span></h2>
-                <p class="section-subtitle">Jarvis integrates directly with your device's core systems.</p>
+                <p class="section-subtitle">Jarvis integrates directly with your device's core systems and advanced AI models.</p>
             </div>
             <div class="features-grid">
+                <div class="feature-card tilt-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Advanced AI Brain</h3>
+                    <p>Powered by state-of-the-art models like Llama 3, Gemma, and Nemotron for intelligent conversations.</p>
+                    <a href="#" class="card-link modal-trigger" data-modal="modal-ai-brain">Learn More &rarr;</a>
+                </div>
+                <div class="feature-card tilt-card">
+                    <div class="feature-icon">👁️</div>
+                    <h3>Vision Capabilities</h3>
+                    <p>Advanced multimodal Vision AI to analyze images and understand the visual world around you.</p>
+                    <a href="#" class="card-link modal-trigger" data-modal="modal-vision">Learn More &rarr;</a>
+                </div>
                 <div class="feature-card tilt-card">
                     <div class="feature-icon">⚙️</div>
                     <h3>Hardware Mastery</h3>
                     <p>Voice control for your flashlight, screen brightness, volume, and haptic feedback.</p>
-                    <a href="features.html" class="card-link">Learn More &rarr;</a>
+                    <a href="#" class="card-link modal-trigger" data-modal="modal-hardware">Learn More &rarr;</a>
                 </div>
                 <div class="feature-card tilt-card">
                     <div class="feature-icon">📱</div>
                     <h3>Deep App Integration</h3>
                     <p>Directly command native apps like WhatsApp, Instagram, Spotify, and Netflix.</p>
-                    <a href="features.html" class="card-link">Learn More &rarr;</a>
+                    <a href="#" class="card-link modal-trigger" data-modal="modal-deep-app">Learn More &rarr;</a>
+                </div>
+                <div class="feature-card tilt-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Native Utilities</h3>
+                    <p>Seamlessly control clipboard, maps navigation, dialer, and native device sharing.</p>
+                    <a href="#" class="card-link modal-trigger" data-modal="modal-native-utils">Learn More &rarr;</a>
                 </div>
                 <div class="feature-card tilt-card">
                     <div class="feature-icon">🎤</div>
                     <h3>Command Library</h3>
                     <p>Explore the vast library of natural voice commands recognized by the Jarvis engine.</p>
-                    <a href="commands.html" class="card-link">View Commands &rarr;</a>
+                    <a href="#" class="card-link modal-trigger" data-modal="modal-commands">Learn More &rarr;</a>
                 </div>
             </div>
         </section>
@@ -149,11 +167,100 @@
             <div class="download-box">
                 <div class="download-content">
                     <h2>Ready to Upgrade Your Reality?</h2>
-                    <p id="download-prompt">Sign in above to access the Pro Portal and download the Jarvis APK.</p>
+                    <p id="download-prompt">Sign in above to access the Portal and download the free, open-source Jarvis APK (Bring Your Own Keys).</p>
                 </div>
             </div>
         </section>
     </main>
+
+    <!-- MODALS -->
+    <div id="modal-ai-brain" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Advanced AI Brain</h2>
+            <div class="modal-body">
+                <p>Jarvis utilizes a Bring Your Own Key (BYOK) architecture, connecting to industry-leading AI models through Groq, Google Gemini, OpenRouter, and Pollinations AI. This gives you:</p>
+                <ul>
+                    <li><strong>Groq Integration:</strong> Lightning-fast Llama 3 inference for real-time voice conversations.</li>
+                    <li><strong>Gemini & OpenRouter:</strong> Access to cutting-edge models like Google Gemma, Meta Llama 3.3 70B, NVIDIA Nemotron 120B, and Qwen 3.</li>
+                    <li><strong>Dynamic Fallback:</strong> Jarvis automatically switches providers if rate limits are reached, ensuring 100% uptime.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="modal-vision" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Vision Capabilities</h2>
+            <div class="modal-body">
+                <p>Using multimodal Vision AI, Jarvis can "see" through your device's camera or analyzed images. Features include:</p>
+                <ul>
+                    <li><strong>Image Analysis:</strong> Describe scenes, identify objects, and understand visual context instantly.</li>
+                    <li><strong>Text Extraction:</strong> Read and parse text from images seamlessly.</li>
+                    <li><strong>Powered by OpenRouter:</strong> Utilizes models like Llama 3.2 Vision and Nemotron-nano-vl.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="modal-hardware" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Hardware Mastery</h2>
+            <div class="modal-body">
+                <p>Jarvis bridges the gap between web technologies and native Android hardware using a custom Capacitor plugin bridge. Capabilities include:</p>
+                <ul>
+                    <li><strong>Flashlight & Screen:</strong> Toggle the camera LED and adjust screen luminosity programmatically.</li>
+                    <li><strong>Audio & Haptics:</strong> Mute, raise, or lower volume, and trigger precise haptic vibration feedback.</li>
+                    <li><strong>Advanced Telemetry:</strong> Monitor live battery state, charging status, and detailed network health metrics.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="modal-deep-app" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Deep App Integration</h2>
+            <div class="modal-body">
+                <p>Launch your favorite Android applications natively via URL schemes and Intent protocols. Supported integrations:</p>
+                <ul>
+                    <li><strong>Communication:</strong> WhatsApp, Telegram, Gmail.</li>
+                    <li><strong>Entertainment:</strong> Spotify, YouTube, Netflix.</li>
+                    <li><strong>Social Media:</strong> Instagram, Twitter (X), Facebook.</li>
+                    <li><strong>Productivity:</strong> Google Chrome, Google Drive, Amazon, and Play Store.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="modal-native-utils" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Native Utilities</h2>
+            <div class="modal-body">
+                <p>Jarvis connects with your phone's native Android utilities for a frictionless workflow. You can easily:</p>
+                <ul>
+                    <li><strong>Clipboard Manager:</strong> Instantly read from or write to your system clipboard via voice.</li>
+                    <li><strong>Maps & Navigation:</strong> Launch Google Maps queries directly to get directions anywhere.</li>
+                    <li><strong>Dialer Integration:</strong> Command Jarvis to prepare phone calls by opening the dialer with a specific number.</li>
+                    <li><strong>Native Sharing:</strong> Share text and links seamlessly through the native Android share sheet.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="modal-commands" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">Command Library</h2>
+            <div class="modal-body">
+                <p>The Jarvis Command Engine doesn't rely on strict keyword matching. Instead, it uses LLM-powered natural language processing to understand your true intent. You can say:</p>
+                <ul>
+                    <li><em>"Turn on the lights"</em> - Activates the flashlight.</li>
+                    <li><em>"Play some music on Spotify"</em> - Opens Spotify natively.</li>
+                    <li><em>"Take me to the nearest coffee shop"</em> - Launches Maps navigation.</li>
+                    <li><em>"What am I looking at?"</em> - Triggers a Vision AI analysis of your camera feed.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <!-- MEGA FOOTER -->
     <footer>
@@ -170,7 +277,7 @@
                 <ul>
                     <li><a href="features.html">Capabilities</a></li>
                     <li><a href="commands.html">Command Library</a></li>
-                    <li><a href="portal.html">Pro Portal</a></li>
+                    <li><a href="portal.html">Portal</a></li>
                 </ul>
             </div>
             <div class="footer-col">

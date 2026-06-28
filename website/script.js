@@ -2,23 +2,36 @@
 function handleCredentialResponse(response) {
     const responsePayload = decodeJwtResponse(response.credential);
 
+    const user = {
+        given_name: responsePayload.given_name,
+        picture: responsePayload.picture
+    };
+    
+    // Save to localStorage for persistence
+    localStorage.setItem('jarvis_user', JSON.stringify(user));
+
+    updateLoginState(user, true); // true = isNewLogin
+}
+
+function updateLoginState(user, isNewLogin = false) {
     const loginWrapper = document.getElementById('google-btn-wrapper');
     const userProfile = document.getElementById('user-profile');
     const userAvatar = document.getElementById('user-avatar');
 
-    loginWrapper.classList.add('hidden');
-    userProfile.classList.remove('hidden');
-    
-    userAvatar.src = responsePayload.picture;
+    if (loginWrapper) loginWrapper.classList.add('hidden');
+    if (userProfile) userProfile.classList.remove('hidden');
+    if (userAvatar) userAvatar.src = user.picture;
 
     // Handle index.html CTA update if it exists
     const downloadPrompt = document.getElementById('download-prompt');
     if (downloadPrompt) {
-        downloadPrompt.textContent = `Welcome, ${responsePayload.given_name}! Access the Pro Portal to download the Jarvis APK.`;
-        // If we are on the homepage, automatically redirect to portal after 1.5 seconds for a cool UX
-        setTimeout(() => {
-            window.location.href = 'portal.html';
-        }, 1500);
+        downloadPrompt.textContent = `Welcome, ${user.given_name}! Access the Portal to download the Jarvis APK.`;
+        // Only redirect if this is a fresh login action
+        if (isNewLogin) {
+            setTimeout(() => {
+                window.location.href = 'portal.html';
+            }, 1500);
+        }
     }
 }
 
@@ -33,6 +46,17 @@ function decodeJwtResponse(token) {
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- Session Persistence Check ---
+    const savedUser = localStorage.getItem('jarvis_user');
+    if (savedUser) {
+        try {
+            const user = JSON.parse(savedUser);
+            updateLoginState(user, false);
+        } catch(e) {
+            localStorage.removeItem('jarvis_user');
+        }
+    }
+
     // --- 1. Initial Load Animations ---
     const hiddenElements = document.querySelectorAll('.hidden-onload');
     setTimeout(() => {
@@ -40,17 +64,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
 
     // --- Logout Handling ---
-    document.getElementById('logout-btn').addEventListener('click', () => {
-        const loginWrapper = document.getElementById('google-btn-wrapper');
-        const userProfile = document.getElementById('user-profile');
-        const downloadPrompt = document.getElementById('download-prompt');
-        
-        loginWrapper.classList.remove('hidden');
-        userProfile.classList.add('hidden');
-        downloadPrompt.textContent = 'Join the revolution and install Jarvis on your Android device today.';
-        
-        google.accounts.id.disableAutoSelect();
-    });
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            // Remove from storage
+            localStorage.removeItem('jarvis_user');
+            
+            const loginWrapper = document.getElementById('google-btn-wrapper');
+            const userProfile = document.getElementById('user-profile');
+            const downloadPrompt = document.getElementById('download-prompt');
+            
+            if (loginWrapper) loginWrapper.classList.remove('hidden');
+            if (userProfile) userProfile.classList.add('hidden');
+            if (downloadPrompt) downloadPrompt.textContent = 'Join the revolution and install Jarvis on your Android device today.';
+            
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                google.accounts.id.disableAutoSelect();
+            }
+        });
+    }
 
     // --- 2. Custom Cursor Glow ---
     const cursorGlow = document.querySelector('.cursor-glow');
@@ -121,6 +153,33 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!isActive) {
                 parent.classList.add('active');
             }
+        });
+    });
+
+    // --- 8. Modal Logic ---
+    const modals = document.querySelectorAll('.modal-overlay');
+    const modalTriggers = document.querySelectorAll('.modal-trigger');
+    const modalCloses = document.querySelectorAll('.modal-close');
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modalId = trigger.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('active');
+        });
+    });
+
+    modalCloses.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.closest('.modal-overlay').classList.remove('active');
+        });
+    });
+
+    // Close on click outside
+    modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('active');
         });
     });
 
