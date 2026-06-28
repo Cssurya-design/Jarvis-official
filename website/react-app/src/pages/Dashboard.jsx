@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { User, Mail, Save, LogOut, Edit3, Image as ImageIcon } from 'lucide-react';
+import { User, Mail, Save, LogOut, Edit3, Image as ImageIcon, Upload } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { supabase } from '../lib/supabase';
 
 const Dashboard = () => {
   const { user, loading, updateProfile, logout } = useAuth();
@@ -11,6 +12,7 @@ const Dashboard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState('');
   const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatarFile, setAvatarFile] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -41,12 +43,37 @@ const Dashboard = () => {
     setIsSaving(true);
     setMessage('');
     try {
+      let finalAvatarUrl = avatarUrl;
+      
+      if (avatarFile) {
+        // Upload the file to supabase storage
+        const fileExt = avatarFile.name.split('.').pop();
+        const fileName = `${user.id}-${Math.random()}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('avatars')
+          .upload(filePath, avatarFile, { upsert: true });
+
+        if (uploadError) {
+          throw uploadError;
+        }
+
+        // Get public URL
+        const { data } = supabase.storage
+          .from('avatars')
+          .getPublicUrl(filePath);
+
+        finalAvatarUrl = data.publicUrl;
+      }
+
       await updateProfile({
         name: name,
-        avatar_url: avatarUrl
+        avatar_url: finalAvatarUrl
       });
       setMessage('Profile updated successfully!');
       setIsEditing(false);
+      setAvatarFile(null);
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
@@ -105,6 +132,7 @@ const Dashboard = () => {
                     setIsEditing(false);
                     setName(user.user_metadata?.name || user.user_metadata?.full_name || '');
                     setAvatarUrl(user.user_metadata?.avatar_url || user.user_metadata?.picture || '');
+                    setAvatarFile(null);
                     setMessage('');
                   }}
                   className="bg-red-500/10 border border-red-500/30 text-red-400 py-2 px-6 rounded-xl hover:bg-red-500/20 transition-colors w-full"
@@ -166,20 +194,19 @@ const Dashboard = () => {
                   </div>
 
                   <div>
-                    <label className="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-2 block">Avatar URL</label>
+                    <label className="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-2 block">Upload Profile Picture</label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <ImageIcon className="h-5 w-5 text-accent/50" />
+                        <Upload className="h-5 w-5 text-accent/50" />
                       </div>
                       <input
-                        type="url"
-                        value={avatarUrl}
-                        onChange={(e) => setAvatarUrl(e.target.value)}
-                        placeholder="https://example.com/my-photo.jpg"
-                        className="w-full bg-[#0a0e17]/50 border border-card-border rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-accent transition-colors"
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => setAvatarFile(e.target.files[0])}
+                        className="w-full bg-[#0a0e17]/50 border border-card-border rounded-xl py-3 pl-12 pr-4 text-white file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent/20 file:text-accent hover:file:bg-accent/30 focus:outline-none transition-colors"
                       />
                     </div>
-                    <p className="text-xs text-text-secondary mt-2">Paste a direct link to an image to update your profile picture.</p>
+                    <p className="text-xs text-text-secondary mt-2">Select a photo from your device to upload.</p>
                   </div>
 
                   <button
