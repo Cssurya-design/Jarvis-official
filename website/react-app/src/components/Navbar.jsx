@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, X, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const location = useLocation();
   const { scrollY } = useScroll();
+  const { user, logout } = useAuth();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -73,12 +76,47 @@ const Navbar = () => {
 
         {/* Right Section (Auth / Hamburger) */}
         <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-4 bg-white/5 p-1 pr-4 rounded-full border border-[#00d4ff]/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all cursor-pointer">
-            <div className="w-8 h-8 rounded-full border-2 border-accent flex items-center justify-center bg-bg-color">
-              <User size={16} className="text-accent" />
+          {user ? (
+            <div className="relative">
+              <div 
+                className="hidden md:flex items-center gap-3 bg-white/5 p-1 pr-4 rounded-full border border-[#00d4ff]/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all cursor-pointer"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                <img src={user.picture} alt="Profile" className="w-8 h-8 rounded-full border-2 border-accent object-cover" />
+                <span className="text-sm font-semibold text-text-primary">{user.given_name || user.name}</span>
+              </div>
+              
+              {showDropdown && (
+                <div className="absolute right-0 mt-2 w-48 bg-[#0a0e17] border border-[#00d4ff]/20 rounded-xl shadow-[0_0_20px_rgba(0,212,255,0.15)] overflow-hidden">
+                  <Link 
+                    to="/dashboard"
+                    onClick={() => setShowDropdown(false)}
+                    className="w-full text-left px-4 py-3 flex items-center gap-3 text-text-primary hover:text-accent hover:bg-white/5 transition-colors font-medium border-b border-[#00d4ff]/10"
+                  >
+                    <LayoutDashboard size={16} />
+                    Dashboard
+                  </Link>
+                  <button 
+                    onClick={() => { logout(); setShowDropdown(false); }}
+                    className="w-full text-left px-4 py-3 flex items-center gap-3 text-red-400 hover:bg-red-500/10 transition-colors font-medium"
+                  >
+                    <LogOut size={16} />
+                    Sign Out
+                  </button>
+                </div>
+              )}
             </div>
-            <span className="text-sm font-semibold text-text-primary">Sign In</span>
-          </div>
+          ) : (
+            <Link 
+              to="/login"
+              className="hidden md:flex items-center gap-4 bg-white/5 p-1 pr-4 rounded-full border border-[#00d4ff]/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,212,255,0.4)] transition-all cursor-pointer no-underline"
+            >
+              <div className="w-8 h-8 rounded-full border-2 border-accent flex items-center justify-center bg-bg-color">
+                <User size={16} className="text-accent" />
+              </div>
+              <span className="text-sm font-semibold text-text-primary">Sign In</span>
+            </Link>
+          )}
 
           <button
             className="md:hidden text-accent hover:text-white transition-colors"
@@ -145,9 +183,40 @@ const Navbar = () => {
                 ))}
                 
                 <div className="mt-auto pt-8 border-t border-[#00d4ff]/10">
-                  <button className="btn-primary w-full justify-center">
-                    Sign In
-                  </button>
+                  {user ? (
+                    <div className="flex flex-col gap-4">
+                      <div className="flex items-center gap-3 px-2">
+                        <img src={user.picture} alt="Profile" className="w-10 h-10 rounded-full border-2 border-accent object-cover" />
+                        <div>
+                          <p className="text-white font-semibold">{user.name}</p>
+                          <p className="text-text-secondary text-sm">{user.email}</p>
+                        </div>
+                      </div>
+                      <Link 
+                        to="/dashboard"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-[#00d4ff]/30 text-white hover:bg-white/5 transition-colors font-semibold"
+                      >
+                        <LayoutDashboard size={18} />
+                        Dashboard
+                      </Link>
+                      <button 
+                        onClick={() => { logout(); setIsMobileMenuOpen(false); }}
+                        className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-red-500/30 text-red-400 hover:bg-red-500/10 transition-colors font-semibold"
+                      >
+                        <LogOut size={18} />
+                        Sign Out
+                      </button>
+                    </div>
+                  ) : (
+                    <Link 
+                      to="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="btn-primary w-full justify-center flex no-underline"
+                    >
+                      Sign In
+                    </Link>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -13,6 +13,9 @@ import Faq from './pages/Faq';
 import Privacy from './pages/Privacy';
 import SystemArch from './pages/SystemArch';
 import Terms from './pages/Terms';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 import SmoothScrollProvider from './components/providers/SmoothScrollProvider';
 import ScrollBackground from './components/ScrollBackground';
 import ScrollToTop from './components/ScrollToTop';
@@ -50,6 +53,9 @@ const AnimatedRoutes = () => {
         <Route path="/privacy-policy" element={<Privacy />} />
         <Route path="/system-architecture" element={<SystemArch />} />
         <Route path="/terms-of-service" element={<Terms />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </AnimatePresence>
   );
