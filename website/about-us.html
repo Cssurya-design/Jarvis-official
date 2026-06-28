@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capabilities - J.A.R.V.I.S.</title>
+    <link rel="icon" type="image/x-icon" href="assets/jarvis_icon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="page-transition">
+    <div class="bg-grid"></div>
+    <div class="scan-line"></div>
+    <canvas id="bg-canvas"></canvas>
+    <div class="cursor-glow"></div>
+
+    <nav class="navbar hidden-onload">
+        <a href="index.html" class="logo" style="text-decoration: none;">
+            <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon">
+            <span class="logo-text">J.A.R.V.I.S.</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html" class="active-link">Capabilities</a></li>
+            <li><a href="commands.html">Command Library</a></li>
+        </ul>
+        <div class="auth-section">
+            <div id="g_id_onload" data-client_id="119889265830-605720nhc99hutk4ird4bgihqarkml23.apps.googleusercontent.com" data-context="signin" data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
+            <div id="google-btn-wrapper" class="btn-nav-wrapper"><div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black" data-text="signin_with" data-size="large" data-logo_alignment="left"></div></div>
+            <div id="user-profile" class="user-profile hidden">
+                <img id="user-avatar" src="" alt="Avatar" class="user-avatar">
+                <a href="portal.html" class="btn-secondary" style="padding: 5px 15px; border-radius: 15px; font-size: 0.9rem;">Portal</a>
+                <button id="logout-btn" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-content">
+        <section class="page-header hidden-onload">
+            <h1 class="page-title">About <span class="text-gradient">Surya.CS</span></h1>
+            <p class="page-subtitle">The developer behind J.A.R.V.I.S.</p>
+        </section>
+        <section class="scroll-reveal" style="padding: 50px 10%; min-height: 40vh; color: var(--text-primary); font-size: 1.1rem; line-height: 1.8;">
+            <p>J.A.R.V.I.S. is a fully open-source AI companion for Android, independently designed and developed by <strong>Surya.CS</strong>. The goal of this project is to provide a seamless, robust, and highly advanced bridge between bleeding-edge web technologies and native Android hardware, giving users complete control over their device via natural language.</p>
+            <p style="margin-top: 20px;">To learn more about me, request custom support, or view my other projects, visit my personal portfolio.</p>
+            <a href="https://suryacs.is-a.dev" target="_blank" class="btn-primary" style="display: inline-block; margin-top: 20px; font-size: 1rem;">Visit Developer Website &rarr;</a>
+        </section>
+    </main>
+    <!-- MEGA FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon" style="width: 30px; height: 30px;">
+                    <span class="logo-text" style="font-size: 1.2rem;">J.A.R.V.I.S.</span>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem;">The ultimate AI companion exclusively for Android. Designed to elevate your daily digital workflow.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="features.html">Capabilities</a></li>
+                    <li><a href="commands.html">Command Library</a></li>
+                    <li><a href="portal.html">Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="api-documentation.html">API Documentation</a></li>
+                    <li><a href="system-architecture.html">System Architecture</a></li>
+                    <li><a href="faq-support.html">FAQ &amp; Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms-of-service.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Jarvis Systems. Developed and Supported by <a href="https://suryacs.is-a.dev" target="_blank" style="color: var(--accent); text-decoration: none;">Surya.CS</a>. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
