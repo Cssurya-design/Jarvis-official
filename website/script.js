@@ -136,8 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 5. Infinite Gallery Clone ---
     const galleryTrack = document.querySelector('.gallery-track');
-    const galleryImages = galleryTrack.innerHTML;
-    galleryTrack.innerHTML += galleryImages;
+    if (galleryTrack) {
+        const galleryImages = galleryTrack.innerHTML;
+        galleryTrack.innerHTML += galleryImages;
+    }
 
     // --- 6. FAQ Accordion Logic ---
     const faqItems = document.querySelectorAll('.faq-question');

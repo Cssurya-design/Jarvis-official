@@ -316,6 +316,17 @@ footer { padding: 60px 10% 20px 10%; border-top: 1px solid var(--card-border); b
 .modal-body ul { margin-left: 20px; margin-top: 15px; }
 .modal-body li { margin-bottom: 10px; }
 
+/* FAQ Accordion */
+.faq-container { width: 100%; border: 1px solid var(--card-border); border-radius: 10px; background: rgba(0, 0, 0, 0.3); overflow: hidden; }
+.faq-item { border-bottom: 1px solid #333; }
+.faq-item:last-child { border-bottom: none; }
+.faq-question { padding: 20px 25px; cursor: pointer; font-family: var(--font-heading); font-size: 1.2rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.02); transition: background 0.3s; }
+.faq-question:hover { background: rgba(255, 255, 255, 0.05); }
+.faq-toggle { font-size: 1.5rem; transition: transform 0.3s; color: var(--accent); display: inline-block; }
+.faq-item.active .faq-toggle { transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; background: var(--card-bg); font-family: var(--font-body); font-size: 1rem; color: var(--text-secondary); line-height: 1.6; }
+.faq-item.active .faq-answer { max-height: 500px; padding: 20px 25px; }
+
 /* Responsive */
 @media (max-width: 992px) {
     .hero-title { font-size: 3.5rem; }
