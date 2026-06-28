@@ -51,7 +51,32 @@
             <p class="page-subtitle">How Jarvis bridges Web and Native.</p>
         </section>
         <section class="scroll-reveal" style="padding: 50px 10%; min-height: 40vh; color: var(--text-primary); font-size: 1.1rem; line-height: 1.8;">
-            <p>Jarvis uses a Capacitor hybrid bridge to connect the high-performance WebView with native Android hardware APIs.</p>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 style="color: var(--accent); margin-bottom: 20px;">Hybrid Native Bridge</h2>
+                <p>J.A.R.V.I.S. is not just a web wrapper. It utilizes a highly optimized hybrid architecture combining a high-performance web frontend with deep native Android integrations via custom Capacitor bridges.</p>
+                
+                <div style="background: rgba(0,212,255,0.05); border: 1px solid var(--accent); border-radius: 10px; padding: 30px; margin: 30px 0;">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Frontend UI Layer</h3>
+                    <p>Built with vanilla HTML5, CSS3, and modern JavaScript. The UI leverages hardware-accelerated CSS animations and WebGL (Three.js) for the fluid, holographic visualizer without draining the battery.</p>
+                </div>
+
+                <div style="background: rgba(0,212,255,0.05); border: 1px solid var(--accent); border-radius: 10px; padding: 30px; margin: 30px 0;">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Native OS Bridge (Java/Kotlin)</h3>
+                    <p>Through custom plugins, the Javascript layer communicates directly with Android system APIs. This allows Jarvis to:</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Read battery telemetry and charging states.</li>
+                        <li>Override system brightness and volume controls.</li>
+                        <li>Trigger the device's Haptic feedback motor.</li>
+                        <li>Access the Camera LED for the flashlight capability.</li>
+                        <li>Read and write to the global system clipboard.</li>
+                    </ul>
+                </div>
+
+                <div style="background: rgba(0,212,255,0.05); border: 1px solid var(--accent); border-radius: 10px; padding: 30px; margin: 30px 0;">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Intent Routing Engine</h3>
+                    <p>When the LLM determines an action (e.g., "Play music"), the response is parsed locally. The app then constructs an Android <code>Intent</code> (e.g., <code>android.intent.action.VIEW</code>) to deeply link into specific apps like Spotify, Maps, or the native Dialer.</p>
+                </div>
+            </div>
         </section>
     </main>
     <!-- MEGA FOOTER -->

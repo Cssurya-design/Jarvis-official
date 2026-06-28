@@ -51,11 +51,35 @@
             <p class="page-subtitle">Get help directly from the developer.</p>
         </section>
         <section class="scroll-reveal" style="padding: 50px 10%; min-height: 40vh; color: var(--text-primary); font-size: 1.1rem; line-height: 1.8;">
-            <p>Need help configuring intents, updating API keys, or managing voice commands? You can do most of this directly from the Portal.</p>
-            <p style="margin-top: 20px;">For direct support, bug reports, and business inquiries, please reach out to the lead developer, <strong>Surya.CS</strong>.</p>
-            <div style="margin-top: 20px; display: flex; gap: 15px; flex-wrap: wrap;">
-                <a href="https://suryacs.is-a.dev" target="_blank" class="btn-primary" style="font-size: 1rem;">Contact Surya.CS &rarr;</a>
-                <a href="mailto:cssurya2006@gmail.com" class="btn-secondary" style="font-size: 1rem;">Email Support &rarr;</a>
+            <div style="max-width: 900px; margin: 0 auto;">
+                
+                <div class="faq-container" style="margin-bottom: 50px;">
+                    <div class="faq-item">
+                        <div class="faq-question">Are my voice conversations recorded or stored? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer"><p>No. Voice audio is processed locally or sent directly to the AI provider (like Google or Groq) for transcription and inference. J.A.R.V.I.S. does not have a backend server, meaning your data is never collected or stored by us.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Why do I need to provide my own API keys? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer"><p>The Bring Your Own Key (BYOK) model keeps the app completely free and open-source. By using your own keys, you bypass expensive monthly subscriptions and get direct, unrestricted access to the most powerful AI models in the world.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Can Jarvis control my smart home devices? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer"><p>Currently, Jarvis can control your phone's native hardware (flashlight, screen, clipboard, apps). Smart home integration (like Phillips Hue or Google Home) is planned for a future update via local network requests.</p></div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Does Jarvis work completely offline? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer"><p>Because Jarvis relies on massive cloud LLMs (like Llama 3 70B) for its advanced reasoning, an active internet connection is required. However, native device controls (like launching apps or toggling the flashlight) are processed locally.</p></div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; background: var(--card-bg); padding: 40px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color: #fff; margin-bottom: 15px;">Still need help?</h3>
+                    <p style="margin-bottom: 20px;">For direct technical support, bug reports, or feature requests, contact the developer directly.</p>
+                    <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                        <a href="https://suryacs.is-a.dev" target="_blank" class="btn-primary">Visit Developer Website</a>
+                        <a href="mailto:cssurya2006@gmail.com" class="btn-secondary">Email Support</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

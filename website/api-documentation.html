@@ -51,7 +51,44 @@
             <p class="page-subtitle">Integrate your BYOK models into Jarvis.</p>
         </section>
         <section class="scroll-reveal" style="padding: 50px 10%; min-height: 40vh; color: var(--text-primary); font-size: 1.1rem; line-height: 1.8;">
-            <p>Jarvis allows you to provide your own API keys for Groq, Google Gemini, OpenRouter, and Pollinations AI. Refer to the portal for setup instructions.</p>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 style="color: var(--accent); margin-bottom: 20px;">1. The BYOK Architecture</h2>
+                <p>J.A.R.V.I.S. operates entirely on a <strong>Bring Your Own Key (BYOK)</strong> model. This ensures complete privacy, zero subscription fees, and maximum performance by allowing direct client-to-API communication without intermediary servers.</p>
+                
+                <h2 style="color: var(--accent); margin-top: 40px; margin-bottom: 20px;">2. Supported API Providers</h2>
+                
+                <div class="feature-card tilt-card" style="margin-bottom: 20px; text-align: left;">
+                    <h3 style="color: #fff;">Groq API (Primary Inference)</h3>
+                    <p>Groq provides ultra-fast Llama 3 inference on their LPU architecture, serving as the primary brain for real-time conversational latency.</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>Endpoint:</strong> <code>https://api.groq.com/openai/v1/chat/completions</code></li>
+                        <li><strong>Recommended Model:</strong> <code>llama3-70b-8192</code></li>
+                        <li><strong>Get Key:</strong> <a href="https://console.groq.com/keys" target="_blank" style="color: var(--accent);">console.groq.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="feature-card tilt-card" style="margin-bottom: 20px; text-align: left;">
+                    <h3 style="color: #fff;">Google Gemini API (Fallback &amp; Multimodal)</h3>
+                    <p>Gemini provides robust fallback capabilities and extended context windows, perfect for deep analysis and image processing.</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>Endpoint:</strong> <code>https://generativelanguage.googleapis.com/v1beta/models/</code></li>
+                        <li><strong>Recommended Model:</strong> <code>gemini-1.5-flash</code></li>
+                        <li><strong>Get Key:</strong> <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--accent);">aistudio.google.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="feature-card tilt-card" style="margin-bottom: 20px; text-align: left;">
+                    <h3 style="color: #fff;">OpenRouter API (Advanced Routing)</h3>
+                    <p>OpenRouter is used to access top-tier models like Meta Llama 3.3 70B, NVIDIA Nemotron, and Qwen 3 with dynamic rate-limit handling.</p>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li><strong>Endpoint:</strong> <code>https://openrouter.ai/api/v1/chat/completions</code></li>
+                        <li><strong>Get Key:</strong> <a href="https://openrouter.ai/keys" target="_blank" style="color: var(--accent);">openrouter.ai</a></li>
+                    </ul>
+                </div>
+
+                <h2 style="color: var(--accent); margin-top: 40px; margin-bottom: 20px;">3. Rate Limits &amp; Security</h2>
+                <p>Because Jarvis connects directly from your Android device to the providers, you are subject to the rate limits of your specific tier (Free or Paid) with each provider. <strong>Your API keys are stored securely and locally on your device using encrypted Android SharedPreferences.</strong> They are never transmitted to any third-party developer servers.</p>
+            </div>
         </section>
     </main>
     <!-- MEGA FOOTER -->

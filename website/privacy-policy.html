@@ -51,7 +51,26 @@
             <p class="page-subtitle">Your data stays on your device.</p>
         </section>
         <section class="scroll-reveal" style="padding: 50px 10%; min-height: 40vh; color: var(--text-primary); font-size: 1.1rem; line-height: 1.8;">
-            <p>Jarvis uses a Bring Your Own Key architecture. Your voice transcripts and data are sent directly to the AI providers you configure. We do not collect or store your personal data.</p>
+            <div style="max-width: 900px; margin: 0 auto;">
+                <h2 style="color: var(--accent); margin-bottom: 20px;">1. Information We Do Not Collect</h2>
+                <p>J.A.R.V.I.S. is built with extreme privacy in mind. <strong>We do not collect, store, or transmit any personal data, voice recordings, or usage analytics to our servers.</strong> The application does not have a centralized database for user profiles.</p>
+                
+                <h2 style="color: var(--accent); margin-top: 40px; margin-bottom: 20px;">2. Third-Party API Providers</h2>
+                <p>Because Jarvis operates on a Bring Your Own Key (BYOK) architecture, your voice transcripts, text prompts, and images are sent directly from your device to the API providers you configure (e.g., Groq, Google, OpenRouter). By using Jarvis, your data is subject to the respective privacy policies of these third-party services.</p>
+
+                <h2 style="color: var(--accent); margin-top: 40px; margin-bottom: 20px;">3. Device Permissions</h2>
+                <p>To function as a personal assistant, Jarvis requires certain Android permissions, which are strictly processed locally:</p>
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li><strong>Microphone:</strong> Used exclusively for speech-to-text recognition. Audio is never recorded in the background.</li>
+                    <li><strong>Camera:</strong> Used strictly to toggle the hardware flashlight/LED and for explicit Vision AI queries.</li>
+                    <li><strong>Query All Packages:</strong> Used locally to determine if target apps (like WhatsApp or Spotify) are installed before attempting to launch them via intents.</li>
+                </ul>
+
+                <h2 style="color: var(--accent); margin-top: 40px; margin-bottom: 20px;">4. Local Data Storage</h2>
+                <p>Your API keys, preferences, and Google login state are stored securely on your local device storage using standard Android <code>SharedPreferences</code>. This data never leaves your device unless sent as an authorization header to the official API endpoints.</p>
+
+                <p style="margin-top: 40px; font-size: 0.9rem; color: #888;">Last Updated: June 2026. For privacy concerns, contact <a href="mailto:cssurya2006@gmail.com" style="color: var(--accent);">cssurya2006@gmail.com</a>.</p>
+            </div>
         </section>
     </main>
     <!-- MEGA FOOTER -->
