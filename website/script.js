@@ -24,8 +24,12 @@ function updateLoginState(user, isNewLogin = false) {
 
     // Handle index.html CTA update if it exists
     const downloadPrompt = document.getElementById('download-prompt');
+    const downloadBtnContainer = document.getElementById('download-btn-container');
     if (downloadPrompt) {
         downloadPrompt.textContent = `Welcome, ${user.given_name}! Access the Portal to download the Jarvis APK.`;
+        if (downloadBtnContainer) {
+            downloadBtnContainer.classList.remove('hidden');
+        }
         // Only redirect if this is a fresh login action
         if (isNewLogin) {
             setTimeout(() => {
@@ -73,10 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const loginWrapper = document.getElementById('google-btn-wrapper');
             const userProfile = document.getElementById('user-profile');
             const downloadPrompt = document.getElementById('download-prompt');
+            const downloadBtnContainer = document.getElementById('download-btn-container');
             
             if (loginWrapper) loginWrapper.classList.remove('hidden');
             if (userProfile) userProfile.classList.add('hidden');
-            if (downloadPrompt) downloadPrompt.textContent = 'Join the revolution and install Jarvis on your Android device today.';
+            if (downloadPrompt) downloadPrompt.textContent = 'Sign in above to access the Portal and download the free, open-source Jarvis APK (Bring Your Own Keys).';
+            if (downloadBtnContainer) downloadBtnContainer.classList.add('hidden');
             
             if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
                 google.accounts.id.disableAutoSelect();
