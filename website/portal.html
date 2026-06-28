@@ -1,159 +1,355 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pro Portal - J.A.R.V.I.S.</title>
-    <link rel="icon" type="image/x-icon" href="assets/jarvis_icon.png">
-    
+    <link rel="icon" type="image/x-icon" href="assets/jarvis_icon.png" />
+
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-</head>
-<body class="page-transition">
+  </head>
+  <body class="page-transition">
     <div class="bg-grid"></div>
     <div class="scan-line"></div>
     <canvas id="bg-canvas"></canvas>
     <div class="cursor-glow"></div>
 
     <nav class="navbar hidden-onload">
-        <a href="index.html" class="logo" style="text-decoration: none;">
-            <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon">
-            <span class="logo-text">J.A.R.V.I.S.</span>
-        </a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="features.html">Capabilities</a></li>
-            <li><a href="commands.html">Command Library</a></li>
-        </ul>
-        <div class="auth-section">
-            <div id="g_id_onload" data-client_id="119889265830-605720nhc99hutk4ird4bgihqarkml23.apps.googleusercontent.com" data-context="signin" data-ux_mode="popup" data-callback="handleCredentialResponse" data-auto_prompt="false"></div>
-            <div id="google-btn-wrapper" class="btn-nav-wrapper"><div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black" data-text="signin_with" data-size="large" data-logo_alignment="left"></div></div>
-            <div id="user-profile" class="user-profile hidden">
-                <img id="user-avatar" src="" alt="Avatar" class="user-avatar">
-                <a href="portal.html" class="btn-secondary" style="padding: 5px 15px; border-radius: 15px; font-size: 0.9rem;">Portal</a>
-                <button id="logout-btn" class="btn-logout">Logout</button>
-            </div>
+      <a href="index.html" class="logo" style="text-decoration: none">
+        <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon" />
+        <span class="logo-text">J.A.R.V.I.S.</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="features.html">Capabilities</a></li>
+        <li><a href="commands.html">Command Library</a></li>
+      </ul>
+      <div class="auth-section">
+        <div
+          id="g_id_onload"
+          data-client_id="119889265830-605720nhc99hutk4ird4bgihqarkml23.apps.googleusercontent.com"
+          data-context="signin"
+          data-ux_mode="popup"
+          data-callback="handleCredentialResponse"
+          data-auto_prompt="false"
+        ></div>
+        <div id="google-btn-wrapper" class="btn-nav-wrapper">
+          <div
+            class="g_id_signin"
+            data-type="standard"
+            data-shape="pill"
+            data-theme="filled_black"
+            data-text="signin_with"
+            data-size="large"
+            data-logo_alignment="left"
+          ></div>
         </div>
+        <div id="user-profile" class="user-profile hidden">
+          <img id="user-avatar" src="" alt="Avatar" class="user-avatar" />
+          <a
+            href="portal.html"
+            class="btn-secondary"
+            style="padding: 5px 15px; border-radius: 15px; font-size: 0.9rem"
+            >Portal</a
+          >
+          <button id="logout-btn" class="btn-logout">Logout</button>
+        </div>
+      </div>
     </nav>
 
     <main class="page-content">
-        <section class="page-header hidden-onload">
-            <h1 class="page-title">Open-Source <span class="text-gradient">Portal</span></h1>
-            <p class="page-subtitle">Welcome back. Jarvis is 100% free and open-source. Bring your own API keys to unlock its full potential.</p>
-        </section>
+      <section class="page-header hidden-onload">
+        <h1 class="page-title">
+          Open-Source <span class="text-gradient">Portal</span>
+        </h1>
+        <p class="page-subtitle">
+          Welcome back. Jarvis is 100% free and open-source. Bring your own API
+          keys to unlock its full potential.
+        </p>
+      </section>
 
-        <section class="portal-dashboard scroll-reveal" id="auth-guard">
-            <div class="portal-grid">
-                
-                <!-- Download Card -->
-                <div class="portal-card tilt-card">
-                    <h3>APK <span class="text-gradient">Normal Version</span></h3>
-                    <p>Includes: <strong>Groq, Gemini, OpenRouter</strong></p>
-                    <p>Status: <span style="color: #27c93f;">Free & Open-Source (BYOK)</span></p>
-                    <a href="https://www.mediafire.com/file/zatjm6vz0yabmj7/Jarvis-Updated.apk/file" target="_blank" class="btn-primary" style="margin-top: 20px;">Download APK</a>
-                </div>
+      <section class="portal-dashboard scroll-reveal" id="auth-guard">
+        <div class="portal-grid">
+          <!-- Download Card -->
+          <div class="portal-card tilt-card">
+            <h3>APK <span class="text-gradient">Normal Version</span></h3>
+            <p>Includes: <strong>Groq, Gemini, OpenRouter</strong></p>
+            <p>
+              Status:
+              <span style="color: #27c93f">Free & Open-Source (BYOK)</span>
+            </p>
+            <a
+              href="https://www.mediafire.com/file/zatjm6vz0yabmj7/Jarvis-Updated.apk/file"
+              target="_blank"
+              class="btn-primary"
+              style="margin-top: 20px"
+              >Download APK</a
+            >
+          </div>
 
-                <!-- Complete Card -->
-                <div class="portal-card tilt-card">
-                    <h3>APK <span style="color: #ffbd2e;">Complete Version</span></h3>
-                    <p>Includes: <strong>Groq, Gemini, OpenRouter, Pollinations AI</strong></p>
-                    <p>Status: <span style="color: #ffbd2e;">Free & Open-Source (BYOK)</span></p>
-                    <a href="https://www.mediafire.com/file/dony0p2tjnyi8l3/Jarvis-Updated.apk/file" target="_blank" class="btn-primary" style="margin-top: 20px;">Download APK</a>
-                </div>
+          <!-- Complete Card -->
+          <div class="portal-card tilt-card">
+            <h3>APK <span style="color: #ffbd2e">Complete Version</span></h3>
+            <p>
+              Includes:
+              <strong>Groq, Gemini, OpenRouter, Pollinations AI</strong>
+            </p>
+            <p>
+              Status:
+              <span style="color: #ffbd2e">Free & Open-Source (BYOK)</span>
+            </p>
+            <a
+              href="https://www.mediafire.com/file/dony0p2tjnyi8l3/Jarvis-Updated.apk/file"
+              target="_blank"
+              class="btn-primary"
+              style="margin-top: 20px"
+              >Download APK</a
+            >
+          </div>
 
-                <!-- Documentation Card -->
-                <div class="portal-card tilt-card" style="grid-column: 1 / -1;">
-                    <h3>Developer <span class="text-gradient">Resources</span></h3>
-                    <p>Learn how to write custom plugins for Capacitor to extend Jarvis's native Android reach.</p>
-                    <div style="margin-top: 20px; padding: 15px; background: rgba(0,0,0,0.5); border-radius: 10px; border: 1px solid #333;" class="font-mono">
-                        // Example: Custom Plugin Scaffold<br>
-                        package com.jarvis.custom;<br><br>
-                        import com.getcapacitor.Plugin;<br>
-                        import com.getcapacitor.annotation.CapacitorPlugin;<br><br>
-                        @CapacitorPlugin(name = "CustomModule")<br>
-                        public class CustomModule extends Plugin {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;...<br>
-                        }
-                    </div>
-                </div>
-                
-                <!-- Supported AI Models Card -->
-                <div class="portal-card tilt-card" style="grid-column: 1 / -1;">
-                    <h3>Neural Engine <span class="text-gradient">Integrations</span></h3>
-                    <p>Jarvis uses your own API keys to provide access to multi-model infrastructure for free.</p>
-                    <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px;">
-                        <span style="padding: 5px 10px; background: rgba(39, 201, 63, 0.2); border: 1px solid #27c93f; border-radius: 5px; font-size: 0.9rem;">Meta Llama 3.3 70B</span>
-                        <span style="padding: 5px 10px; background: rgba(39, 201, 63, 0.2); border: 1px solid #27c93f; border-radius: 5px; font-size: 0.9rem;">Google Gemma 3 27B</span>
-                        <span style="padding: 5px 10px; background: rgba(39, 201, 63, 0.2); border: 1px solid #27c93f; border-radius: 5px; font-size: 0.9rem;">NVIDIA Nemotron 120B</span>
-                        <span style="padding: 5px 10px; background: rgba(39, 201, 63, 0.2); border: 1px solid #27c93f; border-radius: 5px; font-size: 0.9rem;">Qwen 3 80B</span>
-                        <span style="padding: 5px 10px; background: rgba(255, 189, 46, 0.2); border: 1px solid #ffbd2e; border-radius: 5px; font-size: 0.9rem;">Vision Models (Multimodal)</span>
-                    </div>
-                </div>
+          <!-- Scientific Card -->
+          <div class="portal-card tilt-card">
+            <h3>APK <span style="color: #00e5ff">Scientific Version</span></h3>
+            <p>
+              Includes:
+              <strong>Groq, Gemini, OpenRouter, Pollinations AI, Advanced Scientific Calculator</strong>
+            </p>
+            <p>
+              Status:
+              <span style="color: #00e5ff">Free & Open-Source (BYOK)</span>
+            </p>
+            <a
+              href="https://www.mediafire.com/file/y1njwbqcopow5r5/Jarvis-Updated.apk/file"
+              target="_blank"
+              class="btn-primary"
+              style="margin-top: 20px"
+              >Download APK</a
+            >
+          </div>
 
-                <!-- API Keys Card -->
-                <div class="portal-card tilt-card" style="grid-column: 1 / -1;">
-                    <h3>API Key <span class="text-gradient">Setup & Documentation</span></h3>
-                    <p>To fully activate Jarvis, you need to provide your own API keys. Get them for free from the official providers below:</p>
-                    <ul class="feature-list" style="margin-top: 20px;">
-                        <li><strong>Groq API:</strong> <a href="https://console.groq.com/keys" target="_blank" style="color: var(--accent);">https://console.groq.com/keys</a> - Ultra-fast Llama 3 inference.</li>
-                        <li><strong>Google Gemini API:</strong> <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--accent);">https://aistudio.google.com/app/apikey</a> - Access to Gemma and Gemini models.</li>
-                        <li><strong>OpenRouter API:</strong> <a href="https://openrouter.ai/keys" target="_blank" style="color: var(--accent);">https://openrouter.ai/keys</a> - Access to Nemotron, Qwen, and Vision models.</li>
-                        <li><strong>Pollinations AI:</strong> <a href="https://pollinations.ai/" target="_blank" style="color: var(--accent);">https://pollinations.ai/</a> - For image generation capabilities.</li>
-                    </ul>
-                </div>
-
+          <!-- Documentation Card -->
+          <div class="portal-card tilt-card" style="grid-column: 1 / -1">
+            <h3>Developer <span class="text-gradient">Resources</span></h3>
+            <p>
+              While custom Capacitor plugins cannot be added to the pre-compiled APK, you can leverage Jarvis's built-in networking capabilities to connect to external REST APIs.
+            </p>
+            <div
+              style="
+                margin-top: 20px;
+                padding: 15px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+                border: 1px solid #333;
+              "
+              class="font-mono"
+            >
+              // Example: Custom API Integration<br />
+              async function callCustomAI() {<br />
+              &nbsp;&nbsp;const res = await fetch("https://api.example.com/v1", {<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;method: "POST",<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;headers: { "Authorization": `Bearer ${API_KEY}` }<br />
+              &nbsp;&nbsp;});<br />
+              &nbsp;&nbsp;return await res.json();<br />
+              }
             </div>
-        </section>
+          </div>
+
+          <!-- Supported AI Models Card -->
+          <div class="portal-card tilt-card" style="grid-column: 1 / -1">
+            <h3>
+              Neural Engine <span class="text-gradient">Integrations</span>
+            </h3>
+            <p>
+              Jarvis uses your own API keys to provide access to multi-model
+              infrastructure for free.
+            </p>
+            <div
+              style="
+                margin-top: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+              "
+            >
+              <span
+                style="
+                  padding: 5px 10px;
+                  background: rgba(39, 201, 63, 0.2);
+                  border: 1px solid #27c93f;
+                  border-radius: 5px;
+                  font-size: 0.9rem;
+                "
+                >Meta Llama 3.3 70B</span
+              >
+              <span
+                style="
+                  padding: 5px 10px;
+                  background: rgba(39, 201, 63, 0.2);
+                  border: 1px solid #27c93f;
+                  border-radius: 5px;
+                  font-size: 0.9rem;
+                "
+                >Google Gemma 3 27B</span
+              >
+              <span
+                style="
+                  padding: 5px 10px;
+                  background: rgba(39, 201, 63, 0.2);
+                  border: 1px solid #27c93f;
+                  border-radius: 5px;
+                  font-size: 0.9rem;
+                "
+                >NVIDIA Nemotron 120B</span
+              >
+              <span
+                style="
+                  padding: 5px 10px;
+                  background: rgba(39, 201, 63, 0.2);
+                  border: 1px solid #27c93f;
+                  border-radius: 5px;
+                  font-size: 0.9rem;
+                "
+                >Qwen 3 80B</span
+              >
+              <span
+                style="
+                  padding: 5px 10px;
+                  background: rgba(255, 189, 46, 0.2);
+                  border: 1px solid #ffbd2e;
+                  border-radius: 5px;
+                  font-size: 0.9rem;
+                "
+                >Vision Models (Multimodal)</span
+              >
+            </div>
+          </div>
+
+          <!-- API Keys Card -->
+          <div class="portal-card tilt-card" style="grid-column: 1 / -1">
+            <h3>
+              API Key <span class="text-gradient">Setup & Documentation</span>
+            </h3>
+            <p>
+              To fully activate Jarvis, you need to provide your own API keys.
+              Get them for free from the official providers below:
+            </p>
+            <ul class="feature-list" style="margin-top: 20px">
+              <li>
+                <strong>Groq API:</strong>
+                <a
+                  href="https://console.groq.com/keys"
+                  target="_blank"
+                  style="color: var(--accent)"
+                  >https://console.groq.com/keys</a
+                >
+                - Ultra-fast Llama 3 inference.
+              </li>
+              <li>
+                <strong>Google Gemini API:</strong>
+                <a
+                  href="https://aistudio.google.com/app/apikey"
+                  target="_blank"
+                  style="color: var(--accent)"
+                  >https://aistudio.google.com/app/apikey</a
+                >
+                - Access to Gemma and Gemini models.
+              </li>
+              <li>
+                <strong>OpenRouter API:</strong>
+                <a
+                  href="https://openrouter.ai/keys"
+                  target="_blank"
+                  style="color: var(--accent)"
+                  >https://openrouter.ai/keys</a
+                >
+                - Access to Nemotron, Qwen, and Vision models.
+              </li>
+              <li>
+                <strong>Pollinations AI:</strong>
+                <a
+                  href="https://pollinations.ai/"
+                  target="_blank"
+                  style="color: var(--accent)"
+                  >https://pollinations.ai/</a
+                >
+                - For image generation capabilities.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
 
-        <!-- MEGA FOOTER -->
+    <!-- MEGA FOOTER -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <div class="logo">
-                    <img src="assets/jarvis_icon.png" alt="Jarvis Logo" class="nav-icon" style="width: 30px; height: 30px;">
-                    <span class="logo-text" style="font-size: 1.2rem;">J.A.R.V.I.S.</span>
-                </div>
-                <p style="margin-top: 15px; font-size: 0.9rem;">The ultimate AI companion exclusively for Android. Designed to elevate your daily digital workflow.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Product</h4>
-                <ul>
-                    <li><a href="features.html">Capabilities</a></li>
-                    <li><a href="commands.html">Command Library</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="api-documentation.html">API Documentation</a></li>
-                    <li><a href="system-architecture.html">System Architecture</a></li>
-                    <li><a href="faq-support.html">FAQ &amp; Support</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="terms-of-service.html">Terms of Service</a></li>
-                </ul>
-            </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <img
+              src="assets/jarvis_icon.png"
+              alt="Jarvis Logo"
+              class="nav-icon"
+              style="width: 30px; height: 30px"
+            />
+            <span class="logo-text" style="font-size: 1.2rem"
+              >J.A.R.V.I.S.</span
+            >
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem">
+            The ultimate AI companion exclusively for Android. Designed to
+            elevate your daily digital workflow.
+          </p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Jarvis Systems. Developed and Supported by <a href="https://suryacs.is-a.dev" target="_blank" style="color: var(--accent); text-decoration: none;">Surya.CS</a>. All rights reserved.</p>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="features.html">Capabilities</a></li>
+            <li><a href="commands.html">Command Library</a></li>
+          </ul>
         </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="api-documentation.html">API Documentation</a></li>
+            <li><a href="system-architecture.html">System Architecture</a></li>
+            <li><a href="faq-support.html">FAQ &amp; Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 Jarvis Systems. Developed and Supported by
+          <a
+            href="https://suryacs.is-a.dev"
+            target="_blank"
+            style="color: var(--accent); text-decoration: none"
+            >Surya.CS</a
+          >. All rights reserved.
+        </p>
+      </div>
     </footer>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
