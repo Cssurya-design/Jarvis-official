@@ -2,6 +2,66 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Portal = () => {
+  const providers = [
+    {
+      title: "OpenRouter (Deep Reasoning)",
+      desc: "OpenRouter is used to access top-tier models like Meta Llama 3.3 70B, NVIDIA Nemotron, and Qwen 3 with dynamic rate-limit handling.",
+      endpoint: "https://openrouter.ai/api/v1/chat/completions",
+      model: "openrouter",
+      link: "https://openrouter.ai/keys",
+      linkText: "openrouter.ai"
+    },
+    {
+      title: "Groq (Extreme Speed)",
+      desc: "Groq provides ultra-fast Llama 3 inference on their LPU architecture, serving as the primary brain for real-time conversational latency.",
+      endpoint: "https://api.groq.com/openai/v1/chat/completions",
+      model: "groq",
+      link: "https://console.groq.com/keys",
+      linkText: "console.groq.com"
+    },
+    {
+      title: "Free AI Core (Mistral-Large)",
+      desc: "Pollinations AI provides free, unmetered access to Mistral-Large for uncensored and versatile text generation. No API key is needed.",
+      endpoint: "https://text.pollinations.ai/",
+      model: "pollinations",
+      link: "https://pollinations.ai",
+      linkText: "pollinations.ai"
+    },
+    {
+      title: "Free AI Core (GPT-4o)",
+      desc: "Pollinations AI provides free access to GPT-4o capabilities. No API key is needed.",
+      endpoint: "https://text.pollinations.ai/",
+      model: "pollinations-gpt4o",
+      link: "https://pollinations.ai",
+      linkText: "pollinations.ai"
+    },
+    {
+      title: "Free AI Core (Llama-3)",
+      desc: "Pollinations AI provides free access to Llama-3 for high-performance inference. No API key is needed.",
+      endpoint: "https://text.pollinations.ai/",
+      model: "pollinations-llama",
+      link: "https://pollinations.ai",
+      linkText: "pollinations.ai"
+    },
+    {
+      title: "DuckDuckGo AI (Free/Limitless)",
+      desc: "DuckDuckGo AI offers free and limitless conversational capabilities with built-in privacy.",
+      endpoint: "Built-in integration",
+      model: "duckduckgo",
+      link: "https://duckduckgo.com/aichat",
+      linkText: "duckduckgo.com"
+    }
+  ];
+
+  const permissions = [
+    { name: "Camera", desc: "Allow only while using the app" },
+    { name: "Contacts", desc: "Allow" },
+    { name: "Location", desc: "Allow only while using the app" },
+    { name: "Microphone", desc: "Allow only while using the app" },
+    { name: "Notifications", desc: "Allow notifications" },
+    { name: "Phone", desc: "Allow" },
+    { name: "Change system settings", desc: "Allow permission (Found at the bottom of the App Info page)" }
+  ];
   return (
     <div className="min-h-screen py-24 px-6 relative z-10">
       <motion.div 
@@ -67,11 +127,46 @@ const Portal = () => {
         >
           <h3 className="text-2xl font-heading text-white mb-4">API Key <span className="text-gradient">Setup & Documentation</span></h3>
           <p className="text-text-secondary mb-6">To fully activate Jarvis, you need to provide your own API keys. Get them for free from the official providers below:</p>
-          <ul className="space-y-4">
-            <li><strong className="text-white">Groq API:</strong> <a href="https://console.groq.com/keys" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://console.groq.com/keys</a> - Ultra-fast Llama 3 inference.</li>
-            <li><strong className="text-white">OpenRouter API:</strong> <a href="https://openrouter.ai/keys" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://openrouter.ai/keys</a> - Access to Nemotron, Qwen, and Vision models.</li>
-            <li><strong className="text-white">Pollinations AI:</strong> <a href="https://pollinations.ai/" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://pollinations.ai/</a> - For image generation capabilities.</li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {providers.map((provider, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="bg-card-bg/50 glass-panel border border-card-border p-6 rounded-2xl hover:border-accent/50 transition-all neumorphic-shadow"
+              >
+                <h3 className="text-xl font-heading text-white mb-2">{provider.title}</h3>
+                <p className="text-sm text-text-secondary mb-4">{provider.desc}</p>
+                <ul className="space-y-2 font-mono text-xs relative z-20">
+                  <li><strong className="text-accent">Endpoint:</strong> <span className="bg-black/50 px-2 py-1 rounded text-blue-300 inline-block mt-1">{provider.endpoint}</span></li>
+                  <li><strong className="text-accent">Model:</strong> <span className="bg-black/50 px-2 py-1 rounded text-blue-300 inline-block mt-1">{provider.model}</span></li>
+                  <li><strong className="text-accent">Get Key:</strong> <a href={provider.link} target="_blank" rel="noreferrer" className="bg-accent/10 px-2 py-1 rounded text-accent hover:bg-accent hover:text-white transition-all inline-block mt-1">{provider.linkText}</a></li>
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Permissions Setup */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="col-span-1 md:col-span-2 lg:col-span-3 bg-card-bg/80 border border-card-border p-8 rounded-3xl neumorphic-shadow mt-8"
+        >
+          <h3 className="text-2xl font-heading text-white mb-4">Required <span className="text-gradient">Permissions</span></h3>
+          <p className="text-text-secondary mb-4">To ensure Jarvis works perfectly, please Long Press the Jarvis app icon, go to <strong className="text-white">App info (i)</strong>, and configure the following permissions:</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {permissions.map((perm, idx) => (
+              <div key={idx} className="bg-card-bg/50 border border-card-border p-4 rounded-xl flex flex-col">
+                <span className="text-white font-bold mb-1">{perm.name}</span>
+                <span className="text-accent text-sm">{perm.desc}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
       </div>

@@ -21,7 +21,7 @@ const ApiDocs = () => {
     },
     {
       title: "Free AI Core (Mistral-Large)",
-      desc: "Pollinations AI provides free, unmetered access to Mistral-Large for uncensored and versatile text generation.",
+      desc: "Pollinations AI provides free, unmetered access to Mistral-Large for uncensored and versatile text generation. No API key is needed.",
       endpoint: "https://text.pollinations.ai/",
       model: "pollinations",
       link: "https://pollinations.ai",
@@ -29,7 +29,7 @@ const ApiDocs = () => {
     },
     {
       title: "Free AI Core (GPT-4o)",
-      desc: "Pollinations AI provides free access to GPT-4o capabilities without API keys.",
+      desc: "Pollinations AI provides free access to GPT-4o capabilities. No API key is needed.",
       endpoint: "https://text.pollinations.ai/",
       model: "pollinations-gpt4o",
       link: "https://pollinations.ai",
@@ -37,7 +37,7 @@ const ApiDocs = () => {
     },
     {
       title: "Free AI Core (Llama-3)",
-      desc: "Pollinations AI provides free access to Llama-3 for high-performance inference.",
+      desc: "Pollinations AI provides free access to Llama-3 for high-performance inference. No API key is needed.",
       endpoint: "https://text.pollinations.ai/",
       model: "pollinations-llama",
       link: "https://pollinations.ai",
