@@ -66,7 +66,7 @@ const AboutUs = () => {
             <p className="text-text-primary/90 leading-relaxed text-lg pl-5">
               By leveraging a Bring Your Own Key (BYOK) architecture, this project remains 100% free and open-source. 
               It empowers power-users and developers to harness the full potential of bleeding-edge LLMs 
-              (like Llama 3 and Gemini) right from their pockets.
+              (like Llama 3) right from their pockets.
             </p>
           </motion.div>
         </div>

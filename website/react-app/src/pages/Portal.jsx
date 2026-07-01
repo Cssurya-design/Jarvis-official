@@ -19,23 +19,6 @@ const Portal = () => {
       </motion.div>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        {/* APK Normal */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-card-bg/60 glass-panel border border-[#27c93f]/30 p-8 rounded-3xl hover:border-[#27c93f] transition-all flex flex-col neumorphic-shadow"
-        >
-          <h3 className="text-2xl font-heading text-white mb-2">APK <span className="text-[#27c93f]">Normal Version</span></h3>
-          <p className="text-text-secondary mb-4">Includes: <strong className="text-white">Groq, Gemini, OpenRouter</strong></p>
-          <p className="text-sm mb-8">Status: <span className="text-[#27c93f]">Free & Open-Source (BYOK)</span></p>
-          
-          <a href="https://www.mediafire.com/file/zatjm6vz0yabmj7/Jarvis-Updated.apk/file" target="_blank" rel="noreferrer" className="btn-primary w-full text-center mt-auto">
-            Download APK
-          </a>
-        </motion.div>
 
         {/* APK Complete */}
         <motion.div 
@@ -47,27 +30,10 @@ const Portal = () => {
         >
           <div className="absolute top-0 right-0 bg-[#ffbd2e]/20 text-[#ffbd2e] px-4 py-1 rounded-bl-xl font-bold text-xs">POPULAR</div>
           <h3 className="text-2xl font-heading text-white mb-2">APK <span className="text-[#ffbd2e]">Complete Version</span></h3>
-          <p className="text-text-secondary mb-4">Includes: <strong className="text-white">Groq, Gemini, OpenRouter, Pollinations AI</strong></p>
+          <p className="text-text-secondary mb-4">Includes: <strong className="text-white">Groq, OpenRouter, Pollinations AI, DuckDuckGo AI</strong></p>
           <p className="text-sm mb-8">Status: <span className="text-[#ffbd2e]">Free & Open-Source (BYOK)</span></p>
           
-          <a href="https://www.mediafire.com/file/dony0p2tjnyi8l3/Jarvis-Updated.apk/file" target="_blank" rel="noreferrer" className="btn-primary w-full text-center mt-auto !bg-[#ffbd2e]/10 !text-[#ffbd2e] !border-[#ffbd2e]/50 hover:!bg-[#ffbd2e]/20">
-            Download APK
-          </a>
-        </motion.div>
-
-        {/* APK Scientific */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-card-bg/60 glass-panel border border-[#00e5ff]/30 p-8 rounded-3xl hover:border-[#00e5ff] transition-all flex flex-col neumorphic-shadow"
-        >
-          <h3 className="text-2xl font-heading text-white mb-2">APK <span className="text-[#00e5ff]">Scientific Version</span></h3>
-          <p className="text-text-secondary mb-4">Includes: <strong className="text-white">Groq, Gemini, OpenRouter, Pollinations AI, Advanced Scientific Calculator</strong></p>
-          <p className="text-sm mb-8">Status: <span className="text-[#00e5ff]">Free & Open-Source (BYOK)</span></p>
-          
-          <a href="https://www.mediafire.com/file/y1njwbqcopow5r5/Jarvis-Updated.apk/file" target="_blank" rel="noreferrer" className="btn-primary w-full text-center mt-auto !bg-[#00e5ff]/10 !text-[#00e5ff] !border-[#00e5ff]/50 hover:!bg-[#00e5ff]/20">
+          <a href="https://www.mediafire.com/file/4ach6x9wu6vdu2p/J.A.R.V.I.S(4.1.0).apk/file" target="_blank" rel="noreferrer" className="btn-primary w-full text-center mt-auto !bg-[#ffbd2e]/10 !text-[#ffbd2e] !border-[#ffbd2e]/50 hover:!bg-[#ffbd2e]/20">
             Download APK
           </a>
         </motion.div>
@@ -103,7 +69,6 @@ const Portal = () => {
           <p className="text-text-secondary mb-6">To fully activate Jarvis, you need to provide your own API keys. Get them for free from the official providers below:</p>
           <ul className="space-y-4">
             <li><strong className="text-white">Groq API:</strong> <a href="https://console.groq.com/keys" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://console.groq.com/keys</a> - Ultra-fast Llama 3 inference.</li>
-            <li><strong className="text-white">Google Gemini API:</strong> <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://aistudio.google.com/app/apikey</a> - Access to Gemma and Gemini models.</li>
             <li><strong className="text-white">OpenRouter API:</strong> <a href="https://openrouter.ai/keys" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://openrouter.ai/keys</a> - Access to Nemotron, Qwen, and Vision models.</li>
             <li><strong className="text-white">Pollinations AI:</strong> <a href="https://pollinations.ai/" target="_blank" rel="noreferrer" className="text-accent hover:underline mx-2">https://pollinations.ai/</a> - For image generation capabilities.</li>
           </ul>

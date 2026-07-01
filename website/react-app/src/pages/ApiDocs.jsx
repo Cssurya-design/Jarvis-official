@@ -4,28 +4,52 @@ import { motion } from 'framer-motion';
 const ApiDocs = () => {
   const providers = [
     {
-      title: "Groq API (Primary Inference)",
+      title: "OpenRouter (Deep Reasoning)",
+      desc: "OpenRouter is used to access top-tier models like Meta Llama 3.3 70B, NVIDIA Nemotron, and Qwen 3 with dynamic rate-limit handling.",
+      endpoint: "https://openrouter.ai/api/v1/chat/completions",
+      model: "openrouter",
+      link: "https://openrouter.ai/keys",
+      linkText: "openrouter.ai"
+    },
+    {
+      title: "Groq (Extreme Speed)",
       desc: "Groq provides ultra-fast Llama 3 inference on their LPU architecture, serving as the primary brain for real-time conversational latency.",
       endpoint: "https://api.groq.com/openai/v1/chat/completions",
-      model: "llama3-70b-8192",
+      model: "groq",
       link: "https://console.groq.com/keys",
       linkText: "console.groq.com"
     },
     {
-      title: "Google Gemini API (Fallback & Multimodal)",
-      desc: "Gemini provides robust fallback capabilities and extended context windows, perfect for deep analysis and image processing.",
-      endpoint: "https://generativelanguage.googleapis.com/v1beta/models/",
-      model: "gemini-1.5-flash",
-      link: "https://aistudio.google.com/app/apikey",
-      linkText: "aistudio.google.com"
+      title: "Free AI Core (Mistral-Large)",
+      desc: "Pollinations AI provides free, unmetered access to Mistral-Large for uncensored and versatile text generation.",
+      endpoint: "https://text.pollinations.ai/",
+      model: "pollinations",
+      link: "https://pollinations.ai",
+      linkText: "pollinations.ai"
     },
     {
-      title: "OpenRouter API (Advanced Routing)",
-      desc: "OpenRouter is used to access top-tier models like Meta Llama 3.3 70B, NVIDIA Nemotron, and Qwen 3 with dynamic rate-limit handling.",
-      endpoint: "https://openrouter.ai/api/v1/chat/completions",
-      model: "Auto-routed",
-      link: "https://openrouter.ai/keys",
-      linkText: "openrouter.ai"
+      title: "Free AI Core (GPT-4o)",
+      desc: "Pollinations AI provides free access to GPT-4o capabilities without API keys.",
+      endpoint: "https://text.pollinations.ai/",
+      model: "pollinations-gpt4o",
+      link: "https://pollinations.ai",
+      linkText: "pollinations.ai"
+    },
+    {
+      title: "Free AI Core (Llama-3)",
+      desc: "Pollinations AI provides free access to Llama-3 for high-performance inference.",
+      endpoint: "https://text.pollinations.ai/",
+      model: "pollinations-llama",
+      link: "https://pollinations.ai",
+      linkText: "pollinations.ai"
+    },
+    {
+      title: "DuckDuckGo AI (Free/Limitless)",
+      desc: "DuckDuckGo AI offers free and limitless conversational capabilities with built-in privacy.",
+      endpoint: "Built-in integration",
+      model: "duckduckgo",
+      link: "https://duckduckgo.com/aichat",
+      linkText: "duckduckgo.com"
     }
   ];
 
