@@ -98,6 +98,28 @@ const Portal = () => {
           </a>
         </motion.div>
 
+        {/* Itch.io Widget */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="col-span-1 md:col-span-1 lg:col-span-2 bg-card-bg/60 glass-panel border border-card-border p-8 rounded-3xl hover:border-accent/50 transition-all flex flex-col neumorphic-shadow items-center justify-center relative overflow-hidden"
+        >
+          <h3 className="text-2xl font-heading text-white mb-6 self-start">Get it on <span className="text-gradient">Itch.io</span></h3>
+          <div className="w-full overflow-auto flex justify-center">
+            <iframe 
+              frameBorder="0" 
+              src="https://itch.io/embed/4712303?linkback=true&bg_color=e2e8f3&fg_color=27a7f7&link_color=27a7f7" 
+              width="552" 
+              height="167" 
+              title="Jarvis on Itch.io"
+            >
+              <a href="https://surya-cs.itch.io/jarvis">Jarvis by surya-cs</a>
+            </iframe>
+          </div>
+        </motion.div>
+
         {/* Neural Engine Integrations */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
