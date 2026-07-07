@@ -160,6 +160,18 @@ export default function HeroCanvas() {
               <Download size={28} />
               Access Portal
             </Link>
+
+            <div className="w-full overflow-auto flex justify-center mt-12 pt-8 border-t border-accent/20">
+              <iframe 
+                frameBorder="0" 
+                src="https://itch.io/embed/4712303?linkback=true&bg_color=e2e8f3&fg_color=27a7f7&link_color=27a7f7" 
+                width="552" 
+                height="167" 
+                title="Jarvis on Itch.io"
+              >
+                <a href="https://surya-cs.itch.io/jarvis">Jarvis by surya-cs</a>
+              </iframe>
+            </div>
           </div>
         </motion.div>
       </section>
